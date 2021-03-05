@@ -13,11 +13,9 @@ import javax.ws.rs.core.Response;
  *
  * @author Marcel Suter (Ghwalin)
  */
-@Path("test")
 public class TestService {
 
     @GET
-    @Path("test")
     @Produces(MediaType.TEXT_PLAIN)
     public Response test() {
 
