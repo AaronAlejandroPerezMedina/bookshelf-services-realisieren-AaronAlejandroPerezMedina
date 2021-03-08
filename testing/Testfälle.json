@@ -1,0 +1,19 @@
+pm.test("Status test", function (){
+    pm.response.to.have.status(200)
+});
+pm.test("Status test", function (){
+    pm.response.to.have.status(400)
+});
+pm.test("Status test", function (){
+    pm.response.to.have.status(404)
+});
+pm.test("validate response", function(){
+pm.response.to.be.json;
+const responseJson = pm.response.json();
+pm.expect(responseJson.name).to.eql("Hammer");
+})
+pm.test("validate response", function(){
+pm.response.to.be.json;
+const responseJson = pm.response.json();
+pm.expect(responseJson.value).to.eql("24.-");
+})
