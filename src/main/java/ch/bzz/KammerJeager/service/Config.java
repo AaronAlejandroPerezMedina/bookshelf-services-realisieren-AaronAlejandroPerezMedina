@@ -1,4 +1,4 @@
-package ch.bzz.bookshelf.service;
+package ch.bzz.KammerJeager.service;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -10,11 +10,9 @@ import java.util.Properties;
 import java.util.Set;
 
 /**
- * configure the web services and properties
- * <p>
- * M151: BookDB
- *
- * @author Marcel Suter (Ghwalin)
+ * @date 08.03.2021
+ * @author Aaron Perez
+ * @version 1.0
  */
 
 @ApplicationPath("/resource")
@@ -24,15 +22,14 @@ public class Config extends Application {
     private static Properties properties = null;
 
     /**
-     * define all provider classes
-     *
+     * define all  classes
      * @return set of classes
      */
     @Override
     public Set<Class<?>> getClasses() {
         HashSet providers = new HashSet<Class<?>>();
         providers.add(TestService.class);
-        providers.add(BookService.class);
+        providers.add(KammerjeagerService.class);
         return providers;
     }
 

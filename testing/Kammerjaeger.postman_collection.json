@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "572f7517-f95b-419e-8733-84320debc9ab",
+		"name": "Kammerjaeger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Bücherliste",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Werkzeuge",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400)",
+							"});",
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(404)",
+							"});",
+							"pm.test(\"validate response\", function(){",
+							"pm.response.to.be.json;",
+							"const responseJson = pm.response.json();",
+							"pm.expect(responseJson.name).to.eql(\"Hammer\");",
+							"})",
+							"pm.test(\"validate response\", function(){",
+							"pm.response.to.be.json;",
+							"const responseJson = pm.response.json();",
+							"pm.expect(responseJson.value).to.eql(\"24.-\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
