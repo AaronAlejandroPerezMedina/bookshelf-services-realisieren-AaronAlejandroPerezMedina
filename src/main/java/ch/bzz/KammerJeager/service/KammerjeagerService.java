@@ -1,38 +1,45 @@
 package ch.bzz.KammerJeager.service;
 
-
 import ch.bzz.KammerJeager.data.DataHandler;
-import ch.bzz.KammerJeager.model.Kammerjaeger;
+import ch.bzz.KammerJeager.model.Kammerjeager;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.Map;
-/**
- * @date 08.03.2021
- * @author Aaron Perez
- * @version 1.0
- */
+import java.util.UUID;
 
-@Path("Kammerjeager")
+@Path("kammerjeager")
 public class KammerjeagerService {
 
     /**
      *
-     *gives response back
+     * gets the list of kammerjeager
      * @return Response
      */
 
-    @Path("list")
     @GET
+    @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listKammerjeagers () {
-        Map<Integer, Kammerjaeger> kammerjeagerMap = DataHandler.getKammerjaegerMap();
+    public Response listKammerjeagers (@CookieParam("userRole") String userRole) {
+        Map<String, Kammerjeager> kammerjeagerMap = null;
+        int httpStatus;
+        if (userRole == null||userRole.equals("guest")) {
+            httpStatus = 403;
+        }
+        else{
+            kammerjeagerMap   = DataHandler.getKammerjeagerMap();
+            httpStatus = 200;
+        }
+
+
+
         Response response = Response
-                .status(200)
+                .status(httpStatus)
                 .entity(kammerjeagerMap)
                 .build();
         return response;
@@ -40,33 +47,131 @@ public class KammerjeagerService {
 
     /**
      *
-     * reads all the kammerjeagers
-     * @param kammerjeagerID
+     * reads all kammerjeagers
+     * @param kammerjeagerUUID the UUID from the kammerjeager
      * @return Response
      */
 
     @GET
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
-    public  Response ReadKammerjeager(@QueryParam("kammerjeagerID") Integer kammerjeagerID){
-        Kammerjaeger kammerjaeger = null;
+    public  Response ReadKammerjeagers(
+            @Pattern(regexp = "[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}")
+            @QueryParam("kammerjeagerUUID") String kammerjeagerUUID,
+            @CookieParam("userRole") String userRole){
+        Kammerjeager kammerjeager = null;
         int httpStatus;
-        try {
-            kammerjaeger = DataHandler.readKammerjeager(kammerjeagerID);
+        if (userRole == null||userRole.equals("guest")) {
+            httpStatus = 403;
 
-            if(kammerjaeger.getKammerjeagerID() == null){
+        } else {
+            kammerjeager = DataHandler.readKammerjeager(kammerjeagerUUID);
+
+            if (kammerjeager.getKammerjeagerID() == null) {
                 httpStatus = 404;
             } else {
                 httpStatus = 200;
             }
-        } catch(IllegalArgumentException e){
-            httpStatus = 400;
+            try {
+                UUID.fromString(kammerjeagerUUID);
+            } catch (IllegalArgumentException argEx) {
+                httpStatus = 400;
+            }
+        }
 
+        Response response = Response
+                .status(httpStatus)
+                .entity(kammerjeager)
+                .build();
+        return  response;
+    }
+
+
+    @Path("create")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createKammerjeager(
+            @Valid @BeanParam Kammerjeager kammerjeager,
+            @CookieParam("userRole") String userRole
+    ) {
+        int httpStatus;
+        if (userRole != null && userRole.equals("admin")) {
+            kammerjeager.setKammerjeagerID(UUID.randomUUID().toString());
+            kammerjeager.setWerkzeuge(new ArrayList<>());
+
+
+            DataHandler.insertKammerjeager(kammerjeager);
+            httpStatus = 200;
+        } else {
+            httpStatus = 403;
+        }
+
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
+
+    @PUT
+    @Path("update")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response updateKammerjeager(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}")
+            @FormParam("kammerjeagerUUID") String kammerjeagerUUID,
+            @Valid @BeanParam Kammerjeager kammerjeager,
+            @CookieParam("userRole") String userRole
+    ) {
+        int httpStatus;
+        if(userRole != null && userRole.equals("admin")) {
+            kammerjeager.setKammerjeagerID(kammerjeagerUUID);
+
+            if (DataHandler.updateKammerjeager(kammerjeager)) {
+                httpStatus = 200;
+            } else {
+                httpStatus = 404;
+            }
+        } else {
+            httpStatus = 403;
+        }
+
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
+
+
+
+    @Path("delete")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteKammerjeager(
+            @Pattern(regexp = "[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}")
+            @FormParam("kammerjeagerUUID") String kammerjeagerUUID,
+            @CookieParam("userRole") String userRole
+    ) {
+        int httpStatus;
+        try {
+            if(userRole != null && userRole.equals("admin")){
+
+                UUID.fromString(kammerjeagerUUID);
+                int errorcode = DataHandler.deleteKammerjeager(kammerjeagerUUID);
+                if (errorcode == 0) httpStatus = 200;
+                else if (errorcode == -1) httpStatus = 409;
+                else httpStatus = 404;
+            } else {
+                httpStatus = 403;
+            }
+        } catch (IllegalArgumentException argEx) {
+            httpStatus = 400;
         }
         Response response = Response
                 .status(httpStatus)
-                .entity(kammerjaeger)
+                .entity("")
                 .build();
-        return  response;
+        return response;
     }
 }

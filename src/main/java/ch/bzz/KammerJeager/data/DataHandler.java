@@ -1,122 +1,275 @@
 package ch.bzz.KammerJeager.data;
 
-import ch.bzz.KammerJeager.model.Kammerjaeger;
-import ch.bzz.KammerJeager.model.Werkzeuge;
+import ch.bzz.KammerJeager.model.Kammerjeager;
+import ch.bzz.KammerJeager.model.Werkzeug;
 import ch.bzz.KammerJeager.service.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
- * @date 08.03.2021
+ * M133: Kammerjeager
+ *
  * @author Aaron Perez
- * @version 1.0
  */
 
 public class DataHandler {
     private static final DataHandler instance = new DataHandler();
-    private static Map<Integer, Kammerjaeger> KammerjaegerMap;
-    private static Map<Integer, Werkzeuge> WerkzeugeMap;
+    private static Map<String, Kammerjeager> KammerjeagerMap;
+    private static Map<String, Werkzeug> werkzeugMap;
 
     /**
      * default constructor: defeat instantiation
      */
     private DataHandler() {
-        KammerjaegerMap = new HashMap<>();
-        WerkzeugeMap = new HashMap<>();
+        KammerjeagerMap = new HashMap<String, Kammerjeager>();
+        werkzeugMap = new HashMap<String, Werkzeug>();
         readJSON();
     }
 
     /**
-     * reads single kammerjaeger identified by its id
-     * @param KammerjeagerID  the identifier
-     * @return kammerjaeger-object
+     * reads a single kammerjeager identified by its id
+     * @param kammerjeagerID  the identifier
+     * @return kammerjeager-object
      */
-    public static Kammerjaeger readKammerjeager(Integer KammerjeagerID) {
-        Kammerjaeger kammerjaeger = new Kammerjaeger();
-        if (getKammerjaegerMap().containsKey(KammerjeagerID)) {
-            kammerjaeger = getKammerjaegerMap().get(KammerjeagerID);
+    public static Kammerjeager readKammerjeager(String kammerjeagerID) {
+        Kammerjeager kammerjeager = new Kammerjeager();
+        if (getKammerjeagerMap().containsKey(kammerjeagerID)) {
+            kammerjeager = getKammerjeagerMap().get(kammerjeagerID);
         }
-        return kammerjaeger;
+        return kammerjeager;
     }
 
     /**
-     * saves kammerjaeger
-     * @param kammerjaeger the kammerjaeger to be saved
+     * saves a kammerjeager
+     * @param kammerjeager  the kammerjeager to be saved
      */
-    public static void saveKammerjaeger(Kammerjaeger kammerjaeger) {
-        getKammerjaegerMap().put(kammerjaeger.getKammerjeagerID(), kammerjaeger);
+    public static void saveKammerjeager(Kammerjeager kammerjeager) {
+        getKammerjeagerMap().put(kammerjeager.getKammerjeagerID(), kammerjeager);
         writeJSON();
     }
 
+
+
     /**
-     * reads single werkzeug identified by its id
-     * @param WerkzeugID  the identifier
+     * inserts a new kammerjeager into the kammerjeagermap
+     *
+     * @param kammerjeager the kammerjeager to be saved
+     */
+    public static void insertKammerjeager(Kammerjeager kammerjeager) {
+        if(kammerjeager.getWerkzeuge() != getWerkzeugMap().get(kammerjeager.getWerkzeuge())){
+            getKammerjeagerMap().put(kammerjeager.getKammerjeagerID(), kammerjeager);
+            writeJSON();
+        }
+    }
+
+
+
+
+    /**
+     * updates the kammerjeagermap
+     * @param kammerjeager a kammerjeager object
+     * @return entry
+     */
+    public static boolean updateKammerjeager(Kammerjeager kammerjeager) {
+        boolean found = false;
+        Kammerjeager entry = findKammerjeagerByUUID(kammerjeager.getKammerjeagerID());
+        if (entry != null) {
+            found = true;
+            entry.setMaxWerzeuge(kammerjeager.getMaxWerzeuge());
+            writeJSON();
+        }
+        return found;
+    }
+
+    /**
+     * removes a book from the kammerjeagermap
+     *
+     * @param kammerjeagerUUID the uuid of the kammerjeager to be removed
+     * @return success
+     */
+    public static int deleteKammerjeager(String kammerjeagerUUID) {
+        int errorcode = 1;
+        Kammerjeager kammerjeager = findKammerjeagerByUUID(kammerjeagerUUID);
+        if (kammerjeager == null) errorcode = 1;
+        else if (kammerjeager.getWerkzeuge() == null  ||
+                kammerjeager.getWerkzeuge().isEmpty()) {
+            getKammerjeagerMap().remove(kammerjeager);
+            writeJSON();
+            errorcode = 0;
+        } else errorcode = -1;
+
+        return errorcode;
+    }
+
+    /**
+     * reads a single werkzeug identified by its id
+     * @param werkzeugID  the identifier
      * @return werkzeug-object
      */
-    public static Werkzeuge readWerkzeug(String WerkzeugID) {
-        Werkzeuge werkzeuge = new Werkzeuge();
+    public static Werkzeug readWerkzeug(String werkzeugID) {
+        Werkzeug werkzeug = new Werkzeug();
 
-        if (getWerkzeugMap().containsKey(WerkzeugID)) {
-            werkzeuge = getWerkzeugMap().get(WerkzeugID);
+        if (getWerkzeugMap().containsKey(werkzeugID)) {
+            werkzeug = getWerkzeugMap().get(werkzeugID);
         }
-        return werkzeuge;
+        return werkzeug;
     }
 
     /**
-     * saves werkzeug
-     * @param werkzeuge  the werkzeug to be saved
+     * saves a werkzeug
+     * @param werkzeug  the werkzeug to be saved
      */
-    public static void saveWerkzeug(Werkzeuge werkzeuge) {
-        getWerkzeugMap().put(werkzeuge.getWerkzeugID(), werkzeuge);
+    public static void saveWerkzeug(Werkzeug werkzeug) {
+        getWerkzeugMap().put(werkzeug.getWerkzeugID(), werkzeug);
         writeJSON();
     }
 
+
+
     /**
-     * gets the kammerjaegerMap
-     * @return the kammerjaegerMap
+     * inserts a book to the publisher
+     *
+     * @param werkzeug
+     * @param kammerjeagerUUID
+     * @return success
      */
-    public static Map<Integer, Kammerjaeger> getKammerjaegerMap() {
-        return KammerjaegerMap;
+    public static boolean insertWerkzeug(Werkzeug werkzeug, String kammerjeagerUUID) {
+        Kammerjeager kammerjeager = findKammerjeagerByUUID(kammerjeagerUUID);
+        if (kammerjeager == null) {
+            return false;
+        } else {
+            kammerjeager.getWerkzeuge().add(werkzeug);
+            writeJSON();
+            return true;
+        }
+
+    }
+
+    public static boolean updateWerkzeug(Werkzeug werkzeug,String werkzeugUUID, String kammerjeagerUUID) {
+        werkzeug.setWerkzeugID(werkzeugUUID);
+        if (deleteWerkzeug(werkzeug.getWerkzeugID()))
+            return insertWerkzeug(werkzeug, kammerjeagerUUID);
+        else return false;
+    }
+
+    /**
+     * deletes a publisher, if it has no books
+     * @param werkzeugUUID
+     * @return boolean
+     */
+    public static boolean deleteWerkzeug(String werkzeugUUID) {
+        for (Kammerjeager kammerjeager : getKammerjeagerMap().values()) {
+            if (kammerjeager.getWerkzeuge() != null) {
+                for (Werkzeug werkzeug : kammerjeager.getWerkzeuge()) {
+                    if (werkzeug.getWerkzeugID().equals(werkzeugUUID)) {
+                        kammerjeager.getWerkzeuge().remove(werkzeug);
+                        writeJSON();
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * gets the kammerjeagerMap
+     * @return the kammerjeagerMap
+     */
+    public static Map<String, Kammerjeager> getKammerjeagerMap() {
+        return KammerjeagerMap;
     }
 
     /**
      * gets the werkzeugMap
      * @return the werkzeugMap
      */
-    public static Map<Integer, Werkzeuge> getWerkzeugMap() { return WerkzeugeMap;}
-    public static void setWerkzeugMap(Map<Integer, Werkzeuge> werkzeugMap) { DataHandler.WerkzeugeMap= werkzeugMap; }
-    public static void setKammerjaegerMap(Map<Integer, Kammerjaeger> kammerjaegerMap) { DataHandler.KammerjaegerMap = kammerjaegerMap; }
+    public static Map<String, Werkzeug> getWerkzeugMap() {
+        return werkzeugMap;
+    }
+    public static void setWerkzeugMap(Map<String, Werkzeug> werkzeugMap) {
+        DataHandler.werkzeugMap = werkzeugMap;
+    }
+    public static void setKammerjeagerMap(Map<String, Kammerjeager> kammerjeagerMap) {
+        DataHandler.KammerjeagerMap = kammerjeagerMap;
+    }
+
+    public static Kammerjeager findKammerjeagerByWerkzeug(String werkzeugUUID) {
+
+        for (Kammerjeager kammerjeager : getKammerjeagerMap().values()) {
+            for (Werkzeug werkzeug : kammerjeager.getWerkzeuge()) {
+                if (werkzeug.getWerkzeugID().equals(werkzeugUUID))
+                    return kammerjeager;
+            }
+        }
+        return null;
+    }
+
 
     /**
-     * reads the kammerjaegers and werkzeuges
+     * finds a kammerjeager by the uuid
+     *
+     * @param kammerjeagerUUID the kammerjeagerUUID
+     * @return the kammerjeager
+     */
+    public static Kammerjeager findKammerjeagerByUUID(String kammerjeagerUUID) {
+        Kammerjeager kammerjeager = null;
+        kammerjeager = getKammerjeagerMap().get(kammerjeagerUUID);
+        return kammerjeager;
+    }
+
+    /**
+     * gets a book by its uuid
+     *
+     * @param uuid the uuid of the book
+     * @return book-object
+     */
+    public static Werkzeug findWerkzeugByUUID(String uuid) {
+        for (Werkzeug werkzeug : getWerkzeugMap().values()) {
+            if (werkzeug != null && werkzeug.getWerkzeugID().equals(uuid))
+                return werkzeug;
+        }
+
+        return null;
+    }
+
+
+
+    /**
+     * reads the kammerjeagers and werkzeuge
      */
     private static void readJSON() {
         try {
-            byte[] jsonData = Files.readAllBytes(Paths.get(Config.getProperty("kammerjaegerJSON")));
+            byte[] jsonData = Files.readAllBytes(Paths.get(Config.getProperty("kammerjeagerJSON")));
             ObjectMapper objectMapper = new ObjectMapper();
-            Kammerjaeger[] kammerjaegers = objectMapper.readValue(jsonData, Kammerjaeger[].class);
-            for (Kammerjaeger kammerjaeger : kammerjaegers) {
-                Collection<Werkzeuge> werkzeuges = null;
-                for(Werkzeuge werkzeuge : kammerjaeger.getWerkzeuge()){
-                    int werkzeugID = werkzeuge.getWerkzeugID();
-                    if (getWerkzeugMap().containsKey(werkzeugID)) {
-                        werkzeuge = getWerkzeugMap().get(werkzeugID);
-                    } else {
-                        getWerkzeugMap().put(werkzeugID, werkzeuge);
-                    }
-                    werkzeuges.add(werkzeuge);
+            objectMapper.registerModule(new JavaTimeModule());
+            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            Kammerjeager[] kammerjeagers = objectMapper.readValue(jsonData, Kammerjeager[].class);
+            for (Kammerjeager kammerjeager: kammerjeagers) {
+                List<Werkzeug> werkzeuge = new ArrayList<>();
+                if(kammerjeager.getWerkzeuge() != null){
+                    for(Werkzeug werkzeug : kammerjeager.getWerkzeuge()){
+                        String werkzeugID = werkzeug.getWerkzeugID();
+                        if (getWerkzeugMap().containsKey(werkzeugID)) {
+                            werkzeug = getWerkzeugMap().get(werkzeugID);
+                        } else {
+                            getWerkzeugMap().put(werkzeugID, werkzeug);
+                        }
+                        werkzeuge.add(werkzeug);
 
-                }
+                    }}
 
-                kammerjaeger.setWerkzeuge(werkzeuges);
-                getKammerjaegerMap().put(kammerjaeger.getKammerjeagerID(), kammerjaeger);
+                kammerjeager.setWerkzeuge(werkzeuge);
+                getKammerjeagerMap().put(kammerjeager.getKammerjeagerID(), kammerjeager);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -124,22 +277,23 @@ public class DataHandler {
     }
 
     /**
-     * writes the kammerjaegers and werkzeuge
+     * write the kammerjeagers and werkzeuge
      *
      */
     private static void writeJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JSR310Module());
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         Writer writer;
         FileOutputStream fileOutputStream = null;
 
-        String kammerjaegerPath = Config.getProperty("kammerjaegerJSON");
+        String kammerjeagerPath = Config.getProperty("kammerjeagerJSON");
         try {
-            fileOutputStream = new FileOutputStream(kammerjaegerPath);
+            fileOutputStream = new FileOutputStream(kammerjeagerPath);
             writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
-            objectMapper.writeValue(writer, getKammerjaegerMap().values());
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, getKammerjeagerMap().values());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 }
-

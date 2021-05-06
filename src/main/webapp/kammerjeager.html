@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Aaron Perez"/>
+    <meta name="project" content="Werkzeugliste"/>
+    <meta name="description" content="Shows Werkzeuglist"/>
+    <title>Werkzeugliste</title>
+</head>
+<body>
+<h3>Werkzeuge</h3>
+<div id="nav">
+
+
+    <button type="button" id="logoff">Abmelden</button>
+    <span id="userRole"></span>
+    <span id="message" style="color: red;"></span>
+</div>
+<form id="shelfForm">
+    <table id="werkzeuglist">
+        <thead>
+        <ul>
+            <li>Name</li>
+            <li>Type</li>
+            <li>colour</li>
+            <li>Values</li>
+            <li>Effectiveness</li>
+            <li>releaseDate</li>
+        </ul>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <p>
+        <a href="werkzeugedit.html">Neues Werkzeug</a>
+    </p>
+</form>
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script src="js/kammerjeager.js"></script>
+<script src="./js/js.cookie.js"></script>
+</body>
+</html>

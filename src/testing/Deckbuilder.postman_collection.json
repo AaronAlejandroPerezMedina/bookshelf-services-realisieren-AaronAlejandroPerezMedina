@@ -1,0 +1,2745 @@
+{
+	"info": {
+		"_postman_id": "6198ed13-b206-4e71-aab4-a26708cb798d",
+		"name": "Deckbuilder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Deck",
+			"item": [
+				{
+					"name": "1: Deckliste",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"pm.test(\"Validation response\", function(){",
+									"pm.response.to.be.json;",
+									"pm.expect(pm.response.text()).to.include(\"deckID\");",
+									"",
+									"});",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2: read Deck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=ff3f116e-740b-49e3-a9e5-73aa8bd386c0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"read"
+							],
+							"query": [
+								{
+									"key": "deckUUID",
+									"value": "ff3f116e-740b-49e3-a9e5-73aa8bd386c0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2: read Deck ValidUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=ff3f116e-740b-49e3-a9e5-73aa8bd386c0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"read"
+							],
+							"query": [
+								{
+									"key": "deckUUID",
+									"value": "ff3f116e-740b-49e3-a9e5-73aa8bd386c0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3: read Deck Unknown",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(404);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=ff3f116e-740b-49e3-a9e5-73aa8bd386c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"read"
+							],
+							"query": [
+								{
+									"key": "deckUUID",
+									"value": "ff3f116e-740b-49e3-a9e5-73aa8bd386c5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4: read Deck Invalid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=abc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"read"
+							],
+							"query": [
+								{
+									"key": "deckUUID",
+									"value": "abc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Deck valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Deck ValidUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Deck invalid maxCards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "maxCards",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create?maxCards=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Deck valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "4a2903f2-66de-46c8-b388-78832da11b56",
+									"type": "text"
+								},
+								{
+									"key": "maxCards",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Deck validUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "4a2903f2-66de-46c8-b388-78832da11b56",
+									"type": "text"
+								},
+								{
+									"key": "maxCards",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Deck invalid maxCards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "4a2903f2-66de-46c8-b388-78832da11b56",
+									"type": "text"
+								},
+								{
+									"key": "maxCards",
+									"value": "65",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Deck Unknown uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(404);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "4a2903f2-66de-46c8-b388-78832da11b53",
+									"type": "text"
+								},
+								{
+									"key": "maxCards",
+									"value": "60",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Deck invalid uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "1d12b57d-a1c2-4824-c",
+									"type": "text"
+								},
+								{
+									"key": "maxCards",
+									"value": "60",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Deck valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "ff3f116e-740b-49e3-a9e5-73aa8bd386c0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Deck validUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "4a2903f2-66de-46c8-b388-78832da11b56",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Deck invalid uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "1d12b57d-a1c2-",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Deck Unknown uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(404);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "1d12b57d-a1c2-4824-ba66-b5512592785c",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete?deckUUID=4a2903f2-66de-46c8-b388-78832da11b56",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "deckUUID",
+									"value": "4a2903f2-66de-46c8-b388-78832da11b56"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "List Cards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Cards validUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"list"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read Card Valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cardUUID",
+									"value": "fe2618c2-5b77-40a7-947b-3ec3b5699371",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-40a7-947b-3ec3b5699371",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"read"
+							],
+							"query": [
+								{
+									"key": "cardUUID",
+									"value": "fe2618c2-5b77-40a7-947b-3ec3b5699371"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read Card validUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-40a7-947b-3ec3b5699371",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"read"
+							],
+							"query": [
+								{
+									"key": "cardUUID",
+									"value": "fe2618c2-5b77-40a7-947b-3ec3b5699371"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read Card Invalid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"read"
+							],
+							"query": [
+								{
+									"key": "cardUUID",
+									"value": "fe2618c2-5b77-"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read Card Unknown",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(404);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-40a7-947b-3ec3b5699370",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"read"
+							],
+							"query": [
+								{
+									"key": "cardUUID",
+									"value": "fe2618c2-5b77-40a7-947b-3ec3b5699370"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card ValidUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " Sau",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " wasser",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": " krieger",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/1",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": " test",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": " 1997-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card invalid name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " ",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " wasser",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": " krieger",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/1",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": " test",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": " 1997-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card invalid attribut",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " Sau",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " wasser",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": " ",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/1",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": " test",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": " 1997-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card invalid type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " Sau",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " ",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": " krieger",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/1",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": " test",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": " 1997-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card invalid releaseDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " Sau",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " wasser",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": " krieger",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/1",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": " test",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card invalid values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " Sau",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " wasser",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": " krieger",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": " test",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": " 1997-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Card invalid effect",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": " Sau",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " wasser",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": " krieger",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/1",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": " ",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": " 1997-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"deck",
+								"create"
+							],
+							"query": [
+								{
+									"key": "maxCards",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(200);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card validUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card invalid name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckuuid",
+									"value": "62d37870-8050-11eb-9439-0242ac130002",
+									"type": "text"
+								},
+								{
+									"key": "maxCards",
+									"value": "42",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card invalid attribut",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card invalid type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card invalid releaseDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card invalid values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "hallo",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Card invalid effect",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Apfel2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "attribut",
+									"value": "feuer",
+									"type": "text"
+								},
+								{
+									"key": "values",
+									"value": "10/10",
+									"type": "text"
+								},
+								{
+									"key": "effect",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "releaseDate",
+									"value": "1997-01-01",
+									"type": "text"
+								},
+								{
+									"key": "deckUUID",
+									"value": "3496fd45-f416-49db-890b-74a7073265f6",
+									"type": "text"
+								},
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Card valid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cardUUID",
+									"value": "a54500c8-ac67-4527-8b4e-2e57cea75424",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Card validUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									" if(pm.collectionVariables.get(\"role\") == \"admin\"){",
+									"   pm.response.to.have.status(200);",
+									" }else{",
+									"    pm.response.to.have.status(403);",
+									"  }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cardUUID",
+									"value": "1d12b57d-a1c2-4824-ba66-b5512592785c",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Card invalid uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(400);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cardUUID",
+									"value": "33",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Card unknown uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"pm.response.to.have.status(404);",
+									"",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "deckUUID",
+									"value": "1d12b57d-a1c2-4824-ba66-b5512592785d",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Deckbuilder-0.1",
+								"resource",
+								"card",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Werner Lessnazi",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "7480fb9e85b9196af06f006cf1c95024af2531c65fb505cfbd0add1e2f31573",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Deckbuilder-0.1/resource/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Deckbuilder-0.1",
+						"resource",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "0.1: Testservice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Deckbuilder-0.1/resource/test/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Deckbuilder-0.1",
+						"resource",
+						"test",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "role",
+			"value": "admin"
+		}
+	]
+}

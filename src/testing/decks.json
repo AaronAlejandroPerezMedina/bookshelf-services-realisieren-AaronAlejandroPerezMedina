@@ -1,0 +1,101 @@
+[ {
+  "cards" : [ ],
+  "maxCards" : 20,
+  "deckID" : "4a2903f2-66de-46c8-b388-78832da11b56"
+}, {
+  "cards" : [ ],
+  "maxCards" : 20,
+  "deckID" : "92cca208-d911-4652-afa3-776b9b510925"
+}, {
+  "cards" : [ ],
+  "maxCards" : 20,
+  "deckID" : "8bd2d818-ae3d-4ae5-a8ce-5d0081863ed2"
+}, {
+  "cards" : [ {
+    "cardID" : "fe2618c2-5b77-40a7-947b-3ec3b5699371",
+    "name" : "Apfel",
+    "type" : "feuer",
+    "attribut" : "feuer",
+    "values" : "10/10",
+    "effect" : "hallo",
+    "releaseDate" : null
+  }, {
+    "cardID" : "fef10f36-387e-43e9-919c-0a765781710e",
+    "name" : "Apfel",
+    "type" : "feuer",
+    "attribut" : "feuer",
+    "values" : "10/10",
+    "effect" : "hallo",
+    "releaseDate" : null
+  }, {
+    "cardID" : "d1849bd0-52b4-4c4f-82b3-2b479dd90029",
+    "name" : "Apfel",
+    "type" : "feuer",
+    "attribut" : "feuer",
+    "values" : "10/10",
+    "effect" : "hallo",
+    "releaseDate" : null
+  }, {
+    "cardID" : "89b64b7a-473a-4688-81e1-0d2fc1eb50d1",
+    "name" : " Sau",
+    "type" : " wasser",
+    "attribut" : " krieger",
+    "values" : "10/1",
+    "effect" : " test",
+    "releaseDate" : " 1997-01-01"
+  }, {
+    "cardID" : "1289bceb-f1f1-43aa-a656-e3e25304cd93",
+    "name" : " Sau",
+    "type" : " wasser",
+    "attribut" : " krieger",
+    "values" : "10/1",
+    "effect" : " test",
+    "releaseDate" : " 1997-01-01"
+  }, {
+    "cardID" : "5489645f-e083-47e3-ac49-65de94ebde72",
+    "name" : "Apfel",
+    "type" : "feuer",
+    "attribut" : "feuer",
+    "values" : "10/10",
+    "effect" : "hallo",
+    "releaseDate" : "1997-01-01"
+  }, {
+    "cardID" : "2bcc4d63-d207-4b51-93e3-21fdc0e0349c",
+    "name" : "Apfel",
+    "type" : "feuer",
+    "attribut" : "feuer",
+    "values" : "10/10",
+    "effect" : "hallo",
+    "releaseDate" : "1997-01-01"
+  }, {
+    "cardID" : "95a74131-5e61-4e1e-82bd-ae4ba77eccda",
+    "name" : "Apfel",
+    "type" : "feuer",
+    "attribut" : "feuer",
+    "values" : "10/10",
+    "effect" : "hallo",
+    "releaseDate" : "1997-01-01"
+  }, {
+    "cardID" : "ad319ca2-d5dd-4eaa-aa27-018f98099217",
+    "name" : " Sau",
+    "type" : " wasser",
+    "attribut" : " krieger",
+    "values" : "10/1",
+    "effect" : " test",
+    "releaseDate" : " 1997-01-01"
+  }, {
+    "cardID" : "a54500c8-ac67-4527-8b4e-2e57cea75424",
+    "name" : "Apfel2",
+    "type" : "feuer",
+    "attribut" : "feuer",
+    "values" : "10/10",
+    "effect" : "hallo",
+    "releaseDate" : "1997-01-01"
+  } ],
+  "maxCards" : 20,
+  "deckID" : "3496fd45-f416-49db-890b-74a7073265f6"
+}, {
+  "cards" : [ ],
+  "maxCards" : 20,
+  "deckID" : "ff3f116e-740b-49e3-a9e5-73aa8bd386c0"
+} ]

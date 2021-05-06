@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Aaron Perez"/>
+    <meta name="project" content="Kammerjeager"/>
+    <meta name="description" content="edith Werkzeugliste"/>
+    <title>WerkzeugListe bearbeiten</title>
+</head>
+<body>
+<form id="werkzeugeditForm" name="werkzeugedit">
+    <h3>Werkzeug bearbeiten</h3>
+    <div id="message" style="color: #ff0000;"></div>
+    <button type="button" id="logoff">Abmelden</button>
+    <table>
+        <tr>
+            <td><label for="name">Name</label></td>
+            <td>
+                <input id="name" name="title" type="text" size="30" minlength="1" maxlength="10" required/>
+                <input id="werkzeugUUID" name="werkzeugUUID" type="hidden" />
+            </td>
+        </tr>
+        <tr>
+            <td><label for="type">Type</label></td>
+            <td><input id="type" name="type" type="text" size="50" minlength="1" maxlength="10" required/></td>
+        </tr>
+        <tr>
+            <td><label for="attribut">Attribut</label></td>
+            <td><input id="attribut" name="type" type="text" size="50" minlength="1" maxlength="10" required/></td>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="value">Value</label></td>
+            <td>
+                <input id="value" name="value" type="text"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="effectiveness">Effect</label></td>
+            <td><input id="effectiveness" name="effect" type="text" size="50" minlength="1" maxlength="10" required/></td>
+        </tr>
+        <tr>
+            <td><label for="releaseDate">ReleaseDate</label></td>
+            <td><input id="releaseDate" name="releaseDate" type="text" size="50"required/></td>
+        </tr>
+
+    </table>
+    <table>
+        <tr>
+            <td>
+                <button id="save" type="submit">Speichern</button>
+            </td>
+            <td>
+                <button id="reset" type="reset">Zurücksetzen</button>
+            </td>
+            <td>
+                <button id="cancel" type="button">Abbruch</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script src="js/werkzeugedit.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/js.cookie.js"></script>
+</body>
+</html>

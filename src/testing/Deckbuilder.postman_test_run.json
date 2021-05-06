@@ -1,0 +1,1392 @@
+{
+	"id": "b59d2499-fc6a-4c25-8913-5105771fe0aa",
+	"name": "Deckbuilder",
+	"timestamp": "2021-04-30T21:38:00.360Z",
+	"collection_id": "6198ed13-b206-4e71-aab4-a26708cb798d",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 41,
+	"totalFail": 2,
+	"results": [
+		{
+			"id": "30f29656-5566-44fb-96b6-800d2594ca48",
+			"name": "1: Deckliste",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/list",
+			"time": 450,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Validation response": true,
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Validation response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				450
+			],
+			"allTests": [
+				{
+					"Validation response": true,
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "459cae60-dc3d-4238-8643-36db9e031c05",
+			"name": "2: read Deck",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=ff3f116e-740b-49e3-a9e5-73aa8bd386c0",
+			"time": 29,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				29
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "e6ca6348-07c4-4c57-896c-96b2b87dcd5f",
+			"name": "2: read Deck ValidUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=ff3f116e-740b-49e3-a9e5-73aa8bd386c0",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9f362f2c-f1f3-4a05-9359-524aa4ff983f",
+			"name": "3: read Deck Unknown",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=ff3f116e-740b-49e3-a9e5-73aa8bd386c5",
+			"time": 17,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "d162962f-56e9-43e6-90ff-460b8494ee78",
+			"name": "4: read Deck Invalid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/read?deckUUID=abc",
+			"time": 158,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				158
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "5c6f6ee0-57e2-4611-b15d-2d8625694383",
+			"name": "create Deck valid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 269,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				269
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f028612b-485c-43b6-b61e-e0517d236b27",
+			"name": "create Deck ValidUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 24,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				24
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "7bed2a78-928a-4508-a447-b40c7c3ad68a",
+			"name": "create Deck invalid maxCards",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create?maxCards=5",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "bdbb9b93-d2d8-4285-bae9-01cc4920af25",
+			"name": "update Deck valid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2abd81c9-7fa2-49f6-8171-5558223c3fe1",
+			"name": "update Deck validUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "8de08416-a89c-4b05-9eb6-c6e6ebf8b058",
+			"name": "update Deck invalid maxCards",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "03134fa2-e2cb-462e-9655-dbbdcb0ec7e8",
+			"name": "update Deck Unknown uuid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+			"time": 9,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "88cfba54-0e6f-4720-a24c-777238f30fac",
+			"name": "update Deck invalid uuid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/update",
+			"time": 12,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "bcf9a2d2-75e2-4765-8bbf-d3cf98cf2cd2",
+			"name": "delete Deck valid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete",
+			"time": 24,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				24
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0c75b743-026c-430e-a4e4-7a9b1754e6b3",
+			"name": "delete Deck validUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "81c88cfb-3f64-4747-bd14-5400fd4db7f2",
+			"name": "delete Deck invalid uuid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0615cc77-3d12-4a33-bc06-66bbb5e0f15a",
+			"name": "delete Deck Unknown uuid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/delete?deckUUID=4a2903f2-66de-46c8-b388-78832da11b56",
+			"time": 13,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "01deedd0-7a1c-42ab-842b-099a32934bbf",
+			"name": "List Cards",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/list",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2037f9f6-19b6-4e5e-888e-b3e560fad1e3",
+			"name": "List Cards validUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/list",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "84bd6085-9762-41d7-8d4f-ff157f832ade",
+			"name": "read Card Valid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-40a7-947b-3ec3b5699371",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "5b039630-24b9-4ca8-9508-d802677838a4",
+			"name": "read Card validUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-40a7-947b-3ec3b5699371",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0b9f4e46-ed4c-43f1-8194-ca0341177ff6",
+			"name": "read Card Invalid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "50e8a545-7fe5-4266-992b-837c6bc96fd5",
+			"name": "read Card Unknown",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/read?cardUUID=fe2618c2-5b77-40a7-947b-3ec3b5699370",
+			"time": 16,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "83c8028c-e450-4213-9def-3a97019ca0a0",
+			"name": "create Card valid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/create",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "7769dc06-8879-41cc-a290-73b7f65e3b65",
+			"name": "create Card ValidUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/create",
+			"time": 25,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "1a2135a4-b2cf-4687-8a48-dfe225d844ef",
+			"name": "create Card invalid name",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "1ce264dd-dbfb-476e-a643-6df87a466343",
+			"name": "create Card invalid attribut",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "301e371f-6cb2-4afc-bb06-0d47f52f2e8a",
+			"name": "create Card invalid type",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "07cc6941-7e95-4e1c-a56e-116ec00550f4",
+			"name": "create Card invalid releaseDate",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 15,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "61045a17-cd32-4676-8700-c81d426424fe",
+			"name": "create Card invalid values",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 21,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				21
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "87cdbad7-2131-444f-8265-a12bca3ab1e6",
+			"name": "create Card invalid effect",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/deck/create",
+			"time": 25,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "217f95f3-d2e3-4bea-8ebb-940a9caea1c3",
+			"name": "update Card valid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 53,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				53
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "ec798756-ce2a-4e56-9728-b20866c22521",
+			"name": "update Card validUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 19,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "098ae93e-a8c3-4fa6-ade0-60492ae441ca",
+			"name": "update Card invalid name",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 17,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "8b79505d-5bb1-4062-9e6f-78170b4a32bb",
+			"name": "update Card invalid attribut",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 11,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "503a804b-dcde-4900-a756-841fac39e08a",
+			"name": "update Card invalid type",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 16,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "aae8ed9b-92fb-4324-b846-336a09e42da2",
+			"name": "update Card invalid releaseDate",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 22,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "d50dcaec-00e7-467d-bea4-26b649cd56af",
+			"name": "update Card invalid values",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2831a5da-d417-4988-b468-ec4cf630d297",
+			"name": "update Card invalid effect",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/update",
+			"time": 25,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "307883de-3464-463a-a6c0-f0c1454c94f7",
+			"name": "delete Card valid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+			"time": 9,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d62e78c6-df3d-497b-9bfd-76bbb7ee5e4e",
+			"name": "delete Card validUser",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+			"time": 6,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": false
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": false
+				}
+			]
+		},
+		{
+			"id": "883feb9f-48f5-4164-b552-dfd3a77abdba",
+			"name": "delete Card invalid uuid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+			"time": 6,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": false
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": false
+				}
+			]
+		},
+		{
+			"id": "a91f01b7-31d1-41b0-8c7e-454e3582fd21",
+			"name": "delete Card unknown uuid",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/card/delete",
+			"time": 14,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "08f5f402-3ed0-4a03-86b8-93025f12c26d",
+			"name": "Login",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/user/login",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "378543c6-05d2-449f-9cd7-9fe359facff8",
+			"name": "0.1: Testservice",
+			"url": "http://localhost:8080/Deckbuilder-0.1/resource/test/test",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1567,
+	"collection": {
+		"requests": [
+			{
+				"id": "30f29656-5566-44fb-96b6-800d2594ca48",
+				"method": "GET"
+			},
+			{
+				"id": "459cae60-dc3d-4238-8643-36db9e031c05",
+				"method": "GET"
+			},
+			{
+				"id": "e6ca6348-07c4-4c57-896c-96b2b87dcd5f",
+				"method": "GET"
+			},
+			{
+				"id": "9f362f2c-f1f3-4a05-9359-524aa4ff983f",
+				"method": "GET"
+			},
+			{
+				"id": "d162962f-56e9-43e6-90ff-460b8494ee78",
+				"method": "GET"
+			},
+			{
+				"id": "5c6f6ee0-57e2-4611-b15d-2d8625694383",
+				"method": "POST"
+			},
+			{
+				"id": "f028612b-485c-43b6-b61e-e0517d236b27",
+				"method": "POST"
+			},
+			{
+				"id": "7bed2a78-928a-4508-a447-b40c7c3ad68a",
+				"method": "POST"
+			},
+			{
+				"id": "bdbb9b93-d2d8-4285-bae9-01cc4920af25",
+				"method": "PUT"
+			},
+			{
+				"id": "2abd81c9-7fa2-49f6-8171-5558223c3fe1",
+				"method": "PUT"
+			},
+			{
+				"id": "8de08416-a89c-4b05-9eb6-c6e6ebf8b058",
+				"method": "PUT"
+			},
+			{
+				"id": "03134fa2-e2cb-462e-9655-dbbdcb0ec7e8",
+				"method": "PUT"
+			},
+			{
+				"id": "88cfba54-0e6f-4720-a24c-777238f30fac",
+				"method": "PUT"
+			},
+			{
+				"id": "bcf9a2d2-75e2-4765-8bbf-d3cf98cf2cd2",
+				"method": "POST"
+			},
+			{
+				"id": "0c75b743-026c-430e-a4e4-7a9b1754e6b3",
+				"method": "POST"
+			},
+			{
+				"id": "81c88cfb-3f64-4747-bd14-5400fd4db7f2",
+				"method": "POST"
+			},
+			{
+				"id": "0615cc77-3d12-4a33-bc06-66bbb5e0f15a",
+				"method": "POST"
+			},
+			{
+				"id": "01deedd0-7a1c-42ab-842b-099a32934bbf",
+				"method": "GET"
+			},
+			{
+				"id": "2037f9f6-19b6-4e5e-888e-b3e560fad1e3",
+				"method": "GET"
+			},
+			{
+				"id": "84bd6085-9762-41d7-8d4f-ff157f832ade",
+				"method": "GET"
+			},
+			{
+				"id": "5b039630-24b9-4ca8-9508-d802677838a4",
+				"method": "GET"
+			},
+			{
+				"id": "0b9f4e46-ed4c-43f1-8194-ca0341177ff6",
+				"method": "GET"
+			},
+			{
+				"id": "50e8a545-7fe5-4266-992b-837c6bc96fd5",
+				"method": "GET"
+			},
+			{
+				"id": "83c8028c-e450-4213-9def-3a97019ca0a0",
+				"method": "POST"
+			},
+			{
+				"id": "7769dc06-8879-41cc-a290-73b7f65e3b65",
+				"method": "POST"
+			},
+			{
+				"id": "1a2135a4-b2cf-4687-8a48-dfe225d844ef",
+				"method": "POST"
+			},
+			{
+				"id": "1ce264dd-dbfb-476e-a643-6df87a466343",
+				"method": "POST"
+			},
+			{
+				"id": "301e371f-6cb2-4afc-bb06-0d47f52f2e8a",
+				"method": "POST"
+			},
+			{
+				"id": "07cc6941-7e95-4e1c-a56e-116ec00550f4",
+				"method": "POST"
+			},
+			{
+				"id": "61045a17-cd32-4676-8700-c81d426424fe",
+				"method": "POST"
+			},
+			{
+				"id": "87cdbad7-2131-444f-8265-a12bca3ab1e6",
+				"method": "POST"
+			},
+			{
+				"id": "217f95f3-d2e3-4bea-8ebb-940a9caea1c3",
+				"method": "PUT"
+			},
+			{
+				"id": "ec798756-ce2a-4e56-9728-b20866c22521",
+				"method": "PUT"
+			},
+			{
+				"id": "098ae93e-a8c3-4fa6-ade0-60492ae441ca",
+				"method": "PUT"
+			},
+			{
+				"id": "8b79505d-5bb1-4062-9e6f-78170b4a32bb",
+				"method": "PUT"
+			},
+			{
+				"id": "503a804b-dcde-4900-a756-841fac39e08a",
+				"method": "PUT"
+			},
+			{
+				"id": "aae8ed9b-92fb-4324-b846-336a09e42da2",
+				"method": "PUT"
+			},
+			{
+				"id": "d50dcaec-00e7-467d-bea4-26b649cd56af",
+				"method": "PUT"
+			},
+			{
+				"id": "2831a5da-d417-4988-b468-ec4cf630d297",
+				"method": "PUT"
+			},
+			{
+				"id": "307883de-3464-463a-a6c0-f0c1454c94f7",
+				"method": "POST"
+			},
+			{
+				"id": "d62e78c6-df3d-497b-9bfd-76bbb7ee5e4e",
+				"method": "POST"
+			},
+			{
+				"id": "883feb9f-48f5-4164-b552-dfd3a77abdba",
+				"method": "POST"
+			},
+			{
+				"id": "a91f01b7-31d1-41b0-8c7e-454e3582fd21",
+				"method": "POST"
+			},
+			{
+				"id": "08f5f402-3ed0-4a03-86b8-93025f12c26d",
+				"method": "POST"
+			},
+			{
+				"id": "378543c6-05d2-449f-9cd7-9fe359facff8",
+				"method": "GET"
+			}
+		]
+	}
+}
