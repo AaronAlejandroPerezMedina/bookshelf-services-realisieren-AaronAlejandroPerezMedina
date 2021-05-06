@@ -1,0 +1,101 @@
+[ {
+  "werkzeuge": [ ],
+  "maxWerkzeuge": 5,
+  "kammerjeagerID": "46c8"
+}, {
+  "werkzeuge": [ ],
+  "maxWerkzeuge": 5,
+  "kammerjeagerID": "afa3"
+}, {
+  "werkzeuge": [ ],
+  "maxWerkzeuge": 5,
+  "kammerjeagerID": "a8ce"
+}, {
+  "werkzeuge": [ {
+    "werkzeugID": "5b77",
+    "name" : "Axt",
+    "type" : "Holz",
+    "colour": "rot",
+    "value": "10/10",
+    "effectiveness": "yes",
+    "releaseDate" : " 2002-12-16"
+  }, {
+    "werkzeugID": "387e",
+    "name" : "Axt",
+    "type" : "Holz",
+    "colour": "rot",
+    "value": "12.-",
+    "effectiveness": "yes",
+    "releaseDate" : " 2002-12-16"
+  }, {
+    "werkzeugID": "4c4f",
+    "name" : "Axt",
+    "type" : "Eisen",
+    "colour": "rot",
+    "value": "12.-",
+    "effectiveness": "yes",
+    "releaseDate" : " 2002-12-16"
+  }, {
+    "werkzeugID": "81e1",
+    "name" : " Axt",
+    "type" : " Holz",
+    "colour": " rot",
+    "value": "12.-",
+    "effectiveness": " yes",
+    "releaseDate" : " 2002-12-16"
+  }, {
+    "werkzeugID": "43aa",
+    "name" : " Axt",
+    "type" : " Holz",
+    "colour": " rot",
+    "value": "12.-",
+    "effectiveness": " yes",
+    "releaseDate" : " 2002-12-16"
+  }, {
+    "werkzeugID": "47e3",
+    "name" : "Axt",
+    "type" : "Holz",
+    "colour": "rot",
+    "value": "12.-",
+    "effectiveness": "yes",
+    "releaseDate" : "2002-12-16"
+  }, {
+    "werkzeugID": "d207",
+    "name" : "Axt",
+    "type" : "Holz",
+    "colour": "rot",
+    "value": "12.-",
+    "effectiveness": "yes",
+    "releaseDate" : "2002-12-16"
+  }, {
+    "werkzeugID": "5e61",
+    "name" : "Axt",
+    "type" : "Holz",
+    "colour": "rot",
+    "value": "12.-",
+    "effectiveness": "yes",
+    "releaseDate" : "2002-12-16"
+  }, {
+    "werkzeugID": "4eaa",
+    "name" : " Axt",
+    "type" : " Holz",
+    "colour": " rot",
+    "value": "12.-",
+    "effectiveness": " yes",
+    "releaseDate" : " 2002-12-16"
+  }, {
+    "werkzeugID": "ac67",
+    "name" : "Axt",
+    "type" : "Holz",
+    "colour": "rot",
+    "value": "12.-",
+    "effectiveness": "yes",
+    "releaseDate" : "2002-12-16"
+  } ],
+  "maxWerkzeuge": 5,
+  "kammerjeagerID": "890b"
+}, {
+  "werkzeuge": [ ],
+  "maxWerkzeuge": 5,
+  "kammerjeagerID": "49e3"
+} ]
